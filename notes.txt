@@ -1,0 +1,26 @@
+Example /etc/hosts: (note, read more about AWS networking...)
+172.31.0.25 ip-172-31-0-25.eu-west-2.compute.internal
+172.31.8.76 ip-172-31-8-76.eu-west-2.compute.internal
+172.31.5.134 ip-172-31-5-134.eu-west-2.compute.internal
+
+take notes of issues I had on RHEL 7.4 (like the libwhatever-devel thing and manually installing wget...), but for future use CentOS 7 instead
+
+all hosts should be involved in the cluster and used when running the web install - minimum 3 because ZooKeeper says so (needs 1, 3, 5 to run in quorum)...
+
+for that to work the hosts file on all three need to have internal ip mapped to internal FQDN (AWS takes care of the rest)
+
+also, make sure that all three hosts can ssh to eachother, even the master to itself (so cat the pub key into authorised_keys on all of them)
+no need to add all three hosts everywhere it seems, but internal IP and own internal FQDN needs adding on all three
+
+all hosts datanodes, as well as nodemanager
+
+when setting passwords in services, ok to use the same, but make sure it's a strong one and at least 12 characters (eg Th1is1s4$trongP4ssw0rd)
+
+look at PyCharm (JetBrains) as Python IDE
+
+As a fun thing, look at Dan's AWS script and automate the setup of the cluster for basic Ambari install... 
+https://github.com/Chaffelson/whoville/blob/master/deploy_AWS.sh
+
+scp centos@ip-172-31-13-106.eu-west-2.compute.internal:/home/centos/.ssh/id_rsa.pub centos@ip-172-31-11-250.eu-west-2.compute.internal:/home/centos/.ssh/id_rsa.pub
+
+scp centos@ip-172-31-13-106.eu-west-2.compute.internal:/home/centos/.ssh/id_rsa.pub centos@ip-172-31-2-136.eu-west-2.compute.internal:/home/centos/.ssh/id_rsa.pub
